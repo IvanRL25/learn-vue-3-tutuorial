@@ -2,12 +2,18 @@
 <nav>
     <RouterLink :to="{name: 'home'}">Home</RouterLink>
     <RouterLink :to="{name: 'blogPosts'}">Blog Posts</RouterLink>
-    <RouterLink :to = "{name: 'about'}">About</RouterLink>
+    <a href="#" 
+    @click="goToAbout" 
+    :class="{'router-link-active': $route.name === 'about'}">
+        About
+    </a>
 </nav>
 </template>
 
 <script setup>
-
+function goToAbout(){
+  router.push({name: 'about'});
+}
 </script>
 
 <style lang="scss" scoped>
