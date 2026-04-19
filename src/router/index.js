@@ -16,6 +16,19 @@ import { isAuthenticated } from '@/apis/auth'
 const router = createRouter({
   // Provide the history implementation to use. We are using the HTML5 history API
   history: createWebHistory(),
+  scrollBehavior(to, from, savePosition) {
+    
+    const scrollBehaviorOptions = {
+      top: 0,
+      behavior: 'smooth',
+    }
+    
+    if (to.meta.scrollToElement) {
+      scrollBehaviorOptions.el = to.meta.scrollToElement
+    }
+
+    return savePosition ?? scrollBehaviorOptions
+  },
   // Define some routes, each route record should map to a component
   routes: [
     {
@@ -53,7 +66,7 @@ const router = createRouter({
                 default: BlogPost,
                 sidebar: Ads,
               },
-              meta: { requiresAuth: true },
+              meta: { requiresAuth: true, scrollToElement:'.blog-posts-layout'},
             },
           ],
         },
