@@ -3,8 +3,9 @@
         <aside class="blog-post-list">
             <BlogPostList></BlogPostList>
         </aside>
-        <main class="blog-post-content">
-            <router-view></router-view>
+        <main class="blog-post-content-with-sidebar">
+            <router-view class="blog-post-content"></router-view>
+            <router-view name="sidebar"></router-view>
         </main>
     </div>
 </template>
@@ -16,6 +17,7 @@ import BlogPostList from '@/components/BlogPostList.vue'
 <style lang="scss" scoped>
 .blog-posts-layout {
     display: flex;
+    width: 100%;
     gap: 1rem;
 
     .blog-post-list {
@@ -24,6 +26,14 @@ import BlogPostList from '@/components/BlogPostList.vue'
 
     .blog-post-content {
         flex: 0 0 75%;
+    }
+    
+    .blog-post-content-with-sidebar{
+        display: flex;
+        flex: 0 0 75%;
+        .blog-post-content{
+            flex: 1;
+        }
     }
 }
 </style>
